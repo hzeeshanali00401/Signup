@@ -1,0 +1,124 @@
+﻿
+@model SignupModel
+@{
+    Layout = "_EmptyLayout";
+}
+
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card p-4" style="width: 100%; max-width: 600px;">
+        <form method="post" class="needs-validation" novalidate>
+            <div class="form-group mb-3">
+                <label for="UserType" class="form-label">User Type</label>
+                <select id="UserType" name="UserType" class="form-select" asp-for="UserType" required>
+                    <option value="researcher">Researcher</option>
+                    <option value="investor">Investor</option>
+                    <option value="institution_staff">Institution Staff</option>
+                    <option value="service_provider">Service Provider</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a user type.
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="FirstName" class="form-label">First Name</label>
+                        <input type="text" id="FirstName" name="FirstName" class="form-control" asp-for="FirstName" required />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                        <div class="invalid-feedback">
+                            Please enter your first name.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="LastName" class="form-label">Last Name</label>
+                        <input type="text" id="LastName" name="LastName" class="form-control" asp-for="LastName" required />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                        <div class="invalid-feedback">
+                            Please enter your last name.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="email" id="Email" name="Email" class="form-control" asp-for="Email" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <div class="invalid-feedback">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Country" class="form-label">Country</label>
+                        <input type="text" id="Country" name="Country" class="form-control" asp-for="Country" required />
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                        <div class="invalid-feedback">
+                            Please enter your country.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Username" class="form-label">Username</label>
+                        <input type="text" id="Username" name="Username" class="form-control" asp-for="Username" required />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Password" class="form-label">Password</label>
+                        <input type="password" id="Password" name="Password" class="form-control" asp-for="Password" required />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="invalid-feedback">
+                            Please enter a password.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+}
